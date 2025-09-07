@@ -1,5 +1,5 @@
 name: pdfarranger
-base: core22
+base: core24
 adopt-info: pdfarranger
 grade: stable
 confinement: strict
@@ -10,9 +10,9 @@ issues: https://github.com/pdfarranger/pdfarranger/issues
 source-code: https://github.com/pdfarranger/pdfarranger
 license: GPL-3.0-only
 
-architectures:
-  - build-on: amd64
-  - build-on: arm64
+platforms:
+  amd64:
+  arm64:
 
 slots:
   pdfarranger:
@@ -35,14 +35,14 @@ apps:
       - removable-media
     common-id: com.github.jeromerobert.pdfarranger
     environment:
-      PYTHONPATH: $SNAP/usr/lib/python3.10/dist-packages:$PYTHONPATH
+      PYTHONPATH: $SNAP/usr/lib/python3.12/dist-packages:$PYTHONPATH
 parts:
   pdfarranger:
     plugin: python
     source: https://github.com/pdfarranger/pdfarranger.git
     parse-info:
       - usr/share/metainfo/com.github.jeromerobert.pdfarranger.metainfo.xml
-    source-tag: '1.11.0'
+    source-tag: '1.12.1'
     source-depth: 1
     python-packages:
       - distutils-extra-python
@@ -69,45 +69,45 @@ parts:
       - -usr/bin/Activate.ps1
       - -usr/bin/python
       - -usr/bin/python3
-      - -usr/bin/python3.10
+      - -usr/bin/python3.12
       - -usr/bin/pip
       - -usr/bin/pip3
-      - -usr/bin/pip3.10
+      - -usr/bin/pip3.12
       - -pyvenv.cfg
       - -include
       - -etc
       - -lib
-      - -usr/lib/python3.10/site-packages/distutils_extra_python-2.39.2.dist-info
-      - -usr/lib/python3.10/site-packages/_distutils_hack
-      - -usr/lib/python3.10/site-packages/pikepdf.libs
-      - -usr/lib/python3.10/site-packages/Pillow.libs
-      - -usr/lib/python3.10/site-packages/pip*
-      - -usr/lib/python3.10/site-packages/pkg_re*
-      - -usr/lib/python3.10/site-packages/setuptools
-      - -usr/lib/python3.10/site-packages/setuptools-59*
-      - -usr/lib/python3.10/site-packages/six*
+      - -usr/lib/python3.12/site-packages/distutils_extra_python-2.39.2.dist-info
+      - -usr/lib/python3.12/site-packages/_distutils_hack
+      - -usr/lib/python3.12/site-packages/pikepdf.libs
+      - -usr/lib/python3.12/site-packages/Pillow.libs
+      - -usr/lib/python3.12/site-packages/pip*
+      - -usr/lib/python3.12/site-packages/pkg_re*
+      - -usr/lib/python3.12/site-packages/setuptools
+      - -usr/lib/python3.12/site-packages/setuptools-59*
+      - -usr/lib/python3.12/site-packages/six*
       - -lib64
     organize:
       bin: usr/bin
       share: usr/share
-      lib/python3.10/site-packages: usr/lib/python3.10/dist-packages
+      lib/python3.12/site-packages: usr/lib/python3.12/dist-packages
 
   deps:
     after: [ pdfarranger ]
     plugin: nil
     stage-packages:
       - gir1.2-poppler-0.18
-      - libpoppler118
-      - libpoppler-glib8
-      - libqpdf28
+      - libpoppler134
+      - libpoppler-glib8t64
+      - libqpdf29t64
     override-prime: |
       craftctl default
       echo $SNAPCRAFT_PROJECT_VERSION
     prime:
       - usr/lib/$CRAFT_ARCH_TRIPLET/girepository-1.0/Poppler-0.18.typelib
-      - usr/lib/$CRAFT_ARCH_TRIPLET/libpoppler.so.118
-      - usr/lib/$CRAFT_ARCH_TRIPLET/libpoppler.so.118.0.0
+      - usr/lib/$CRAFT_ARCH_TRIPLET/libpoppler.so.134
+      - usr/lib/$CRAFT_ARCH_TRIPLET/libpoppler.so.134.0.0
       - usr/lib/$CRAFT_ARCH_TRIPLET/libpoppler-glib.so.8
-      - usr/lib/$CRAFT_ARCH_TRIPLET/libpoppler-glib.so.8.23.0
-      - usr/lib/$CRAFT_ARCH_TRIPLET/libqpdf.so.28
-      - usr/lib/$CRAFT_ARCH_TRIPLET/libqpdf.so.28.6.3
+      - usr/lib/$CRAFT_ARCH_TRIPLET/libpoppler-glib.so.8.26.0
+      - usr/lib/$CRAFT_ARCH_TRIPLET/libqpdf.so.29
+      - usr/lib/$CRAFT_ARCH_TRIPLET/libqpdf.so.29.9.0
