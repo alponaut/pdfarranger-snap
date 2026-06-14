@@ -42,11 +42,8 @@ parts:
     source: https://github.com/pdfarranger/pdfarranger.git
     parse-info:
       - usr/share/metainfo/com.github.jeromerobert.pdfarranger.metainfo.xml
-    source-tag: '1.13.0'
+    source-tag: '1.14.0'
     source-depth: 1
-    override-prime: |
-       craftctl default
-       sed -i.bak -e 's|Icon=com.github.jeromerobert.pdfarranger|Icon=/usr/share/icons/hicolor/scalable/apps/com.github.jeromerobert.pdfarranger.svg|g' $CRAFT_PART_INSTALL/usr/share/applications/com.github.jeromerobert.pdfarranger.desktop
     python-packages:
       - distutils-extra-python
       - lxml
